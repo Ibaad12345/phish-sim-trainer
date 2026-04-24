@@ -14,7 +14,7 @@ receiver_email = "test-user@example.com"        # Your "target"
 subject = "Critical Security Alert: Unauthorized Login"
 # 1. Generate a random, unique ID
 unique_id = str(uuid.uuid4())
-trigger_type = "Urgency"
+trigger_type = "Authority"  # This is the "hook" that tells us which phish they got
 
 # 3. Create the URLs using the UUID instead of the email
 tracking_url = f"http://localhost:5000/click?id={unique_id}"
