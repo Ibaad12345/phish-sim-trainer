@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>PhishGuard Analytics</title>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container-fluid"><span class="navbar-brand">🛡️ PhishGuard Analytics</span></div>
+    </nav>
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Emails Sent</h5>
+                        <p class="display-6">{{ total_sent }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form class="d-flex" action="/dashboard" method="GET">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search by User ID (UUID)..." value="{{ search }}">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                    <a href="/dashboard" class="btn btn-link">Clear</a>
+                </form>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-header bg-white"><strong>Recent Activity Log</strong></div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>User ID (UUID)</th>
+                            <th>Action</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in activity %}
+                        <tr>
+                            <td><code>{{ row[0] }}</code></td>
+                            <td>
+                                <span class="badge {{ 'bg-danger' if 'CLICK' in row[1] else 'bg-success' }}">
+                                    {{ row[1] }}
+                                </span>
+                            </td>
+                            <td class="text-muted">{{ row[2] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
