@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Training</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; text-align: center; padding: 50px; }
+        .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 700px; margin: auto; }
+        .header { color: #d9534f; font-size: 2em; margin-bottom: 20px; }
+        .lesson-box { background: #fff8e1; border-left: 6px solid #ffc107; padding: 20px; text-align: left; margin: 20px 0; }
+        .trigger-tag { background: #0275d8; color: white; padding: 3px 10px; border-radius: 5px; text-transform: uppercase; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">🔒 Phishing Simulation Alert</div>
+        <p>You recently clicked a link in a simulated phishing email.</p>
+        <p><strong>Psychological Trigger Used:</strong> <span class="trigger-tag">{{ trigger_type }}</span></p>
+
+        <div class="lesson-box">
+            <h3>🎓 Why this worked:</h3>
+            
+            {% if trigger_type == 'Urgency' %}
+                <p><strong>Urgency</strong> creates a sense of panic. When we are rushed, our brains bypass critical thinking and move straight to action. Attackers use "limited time" threats to make you act before you think.</p>
+            {% elif trigger_type == 'Authority' %}
+                <p><strong>Authority</strong> exploits our natural tendency to obey those in power (like CEOs or IT Managers). Attackers spoof official titles to make you feel like you are following a mandatory order.</p>
+            {% elif trigger_type == 'Scarcity' %}
+                <p><strong>Scarcity</strong> makes us feel we are losing out on a resource. "Final notice" or "Only 2 accounts left" are common tactics to make you feel a fear of missing out (FOMO).</p>
+            {% else %}
+                <p>Attackers use psychological manipulation to bypass technical security. Always check the sender's email address and hover over links before clicking.</p>
+            {% endif %}
+        </div>
+
+        <p><em>Always remember: STOP, LOOK, and THINK.</em></p>
+        <a href="javascript:window.close();" style="color: #666;">Close this window</a>
+    </div>
+</body>
+</html>
